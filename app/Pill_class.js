@@ -15,7 +15,7 @@ var zCounter=1;
 
 //code for making a pill object. Also checks to see if it's the poison
 Pill.prototype.create = function() {
-	pillsContainer.innerHTML+='<div class="pill" id="pill_'+this.num+'">'+this.num+'<div class="vertCent"></div></div><div class="betweenPills"></div>';
+	pillsContainer.innerHTML+='<div class="pill" id="pill_'+this.num+'" draggable="true">'+this.num+'<div class="vertCent"></div></div><div class="betweenPills"></div>';
 	if (poison==this.num){
 		this.isPoison=true;
 		this.weight+=poisonWeight;
