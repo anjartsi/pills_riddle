@@ -39,7 +39,7 @@ var pillID = function(num){
 //Creates event listeners for a given pill (mouseent, mouseleave, mousedown, and mouseup)
 // listeners.push(function(pillNum){
 // 	pillID(pillNum).addEventListener('mouseenter',function() {
-// 		//addClass(pillID(pillNum),'hovered');
+// 		addClass(pillID(pillNum),'hovered');
 // 	});
 // });
 
