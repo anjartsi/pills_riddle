@@ -19,25 +19,14 @@ var group2 = document.getElementById('group2');
 //using the Pill class defined in Pill_class.js
 // allPills[0] is undefined, it starts from index 1
 // so that the pill ID matches its index in allPills[]
-
-var pillBoxCreator = function(el,name) {
-	for (var i = 0; i <numPills ; i++) {
-		el.innerHTML+='<div class="container pillBox" id="pillBox_'+name+(i+1)+'"></div>'; 
-	}	
-};
-
-pillBoxCreator(pillsContainer,'A');
-pillBoxCreator(group1,'B');
-pillBoxCreator(group2,'C');
-
-var makePills = function() {
+var addPills = function() {
 	for(var i=1;i<numPills+1;i++){
 		allPills[i] = new Pill(i);
-		allPills[i].create(document.getElementById('pillBox_A'+i));
+		allPills[i].create();
 	}
+	pillsContainer.innerHTML+='<div class="clearBoth"></div>';
 }
-
-makePills();
+addPills();
 
 // ==== DEFINE LISTENERS =====
 var listeners = [];
@@ -46,6 +35,40 @@ var listeners = [];
 var pillID = function(num){
 	return document.getElementById('pill_'+num);
 }
+
+//Creates event listeners for a given pill (mouseent, mouseleave, mousedown, and mouseup)
+// listeners.push(function(pillNum){
+// 	pillID(pillNum).addEventListener('mouseenter',function() {
+// 		addClass(pillID(pillNum),'hovered');
+// 	});
+// });
+
+// listeners.push(function(pillNum){
+// 	pillID(pillNum).addEventListener('mouseleave',function() {
+// 		removeClass(pillID(pillNum),'hovered');
+// 		allPills[pillNum].unchoose();
+// 	});
+// });
+
+// listeners.push(function(pillNum){
+// 	pillID(pillNum).addEventListener('mousedown',function() {
+// 		allPills[pillNum].choose();
+// 	});
+// });
+
+// listeners.push(function(pillNum){
+// 	pillID(pillNum).addEventListener('mouseup',function() {
+// 		allPills[pillNum].unchoose();
+// 	});
+// });
+
+// listeners.push(function(pillNum){
+// 	pillID(pillNum).addEventListener('mousemove',function() {
+// 		var x=event.movementX;
+// 		var y=event.movementY;
+// 		dragPill(pillNum,x,y);
+// 	});
+// });
 
 // listeners.push(function(pillNum,mousex,mousey) {
 // 	if(allPills[pillNum].chosen){
@@ -68,44 +91,30 @@ listeners.push(function(pillNum) {
 			dragging. We do this through the data transfer proporty on the event
 			object
 		 */
-		 e.dataTransfer.setData("application/pill_number",pillNum);
 	});
 });
 
-var pillContDragEnterListener = function(e){
-	e.preventDefault();
-}
-
-
-var pillContDropListener = function(e){
-	var pillNum = e.dataTransfer.getData("application/pill_number");
-	var pillEl = pillID(pillNum).parentElement.removeChild(pillID(pillNum));
-	var group = e.currentTarget;
-	group.appendChild(pillEl);
-}
-
-
-
-pillsContainer.addEventListener('dragenter',pillContDragEnterListener);
-pillsContainer.addEventListener('dragover',pillContDragEnterListener);
-pillsContainer.addEventListener('drop',pillContDropListener);
-
-var groupDragEnterListener = function(e) {
-  	e.preventDefault();
+var dragEnterListener = function(e) {
+	/*
+		TODO: Drag enter is how we tell the browser that if the user drags something
+		here, they can drop it here. We do this by preventing the default 
+		behavior of the event which is to not allowing the drop.
+	 */
 };
-group1.addEventListener('dragenter', groupDragEnterListener);
-group2.addEventListener('dragenter', groupDragEnterListener);
-group1.addEventListener('dragover', groupDragEnterListener);
-group2.addEventListener('dragover', groupDragEnterListener);
+group1.addEventListener('dragenter', dragEnterListener);
+group2.addEventListener('dragenter', dragEnterListener);
+group1.addEventListener('dragover', dragEnterListener);
+group2.addEventListener('dragover', dragEnterListener);
 
-var groupDropListener = function(e) {
- 	var pillNum = e.dataTransfer.getData("application/pill_number");
-	var pillEl = pillID(pillNum).parentElement.removeChild(pillID(pillNum));
-	var group = e.currentTarget;
-	group.appendChild(pillEl);
+var dropListener = function(e) {
+	/*
+		TODO: The user has decided to drop the data in this bucket. We 
+		need to read the data in the event object to know which pill to 
+		add into the bucket.
+	 */
 }
-group1.addEventListener('drop', groupDropListener);
-group2.addEventListener('drop', groupDropListener);
+group1.addEventListener('drop', dropListener);
+group2.addEventListener('drop', dropListener);
 
 // creates the MouseUp and MouseDown event listeners for all pills
 for(var i=1;i<numPills+1;i++){
@@ -125,4 +134,5 @@ function addClass(el, cls) {
 function removeClass(el, cls) {
 	el.className = el.className.replace(cls, '');
 }
+
 

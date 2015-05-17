@@ -65,31 +65,18 @@ html{
 	border-radius: 25px;
 }
 
-
-#pillsContainer>p{
-	width: 100%;
-}
-
-.pillBox{
-	width: 70px;
-	height: 130px;
-	float:left;
-	border:1px dotted black;
-}
-
 #pillsContainer{	
 	width:-webkit-max-content;
-	height:200px;
 	margin:0px auto;
-	background-color: #6677AA;
-	text-align: center;
+	padding-top: 10px;
 }
+
 
 .pill{
 	height: 120px;
-	width: 60px;
 	left:0px;
 	float:left;
+	width: 60px;
 	text-align: center;
 	font-size: 2em;
 	border-radius: 40px;
@@ -98,7 +85,6 @@ html{
 	color: black;
 	cursor: -webkit-grab;
 	position:relative;
-	margin:5px;
 }
 
 .hovered{
@@ -110,6 +96,23 @@ html{
 	cursor:-webkit-grabbing;
 }
 
+
+/*
+vertCent are divs that go inside pills
+purpose is to vertically align contents of pill
+*/
+.vertCent{
+	height:50%;
+	display:inline-block;
+	border:none;
+}
+
+/*these divs go between pills, and they are for pill spacing*/
+.betweenPills{
+	width:10px;
+	float:left;
+	height: 1px;
+}
 
 #scaleContainer{
 	margin-left: auto;
@@ -123,7 +126,7 @@ html{
 	text-align: center;
 	margin:0px;
 	float: left;
-	height: 300px;
+	height: 200px;
 
 }
 
@@ -131,7 +134,6 @@ html{
 	width: 49%;
 	background-color: #99AADD;
 	border-radius: 12px;
-	margin: auto;
 }
 
 #betweenScaleGroups{
@@ -148,15 +150,4 @@ html{
 #buttonContainer{
 	text-align: center;
 	width: 100%;
-}
-
-
-/*
-vertCent are divs that go inside pills
-purpose is to vertically align contents of pill
-*/
-.vertCent{
-	height:50%;
-	display:inline-block;
-	border:none;
 }
