@@ -68,27 +68,26 @@ html{
 .space{
 	display: inline-block;
 	float:left;
-	height:430px;
-	width:13%;
+	height:460px;
+	width:14%;
 	text-align: center;
 	background-color: #6677AA;
 	border-radius: 12px;
 }
-#leftSpace{
-	padding-left: 20px;
-	padding-right:-20px;
-}
+
 #rightSpace{
 	float: right;
-	padding-right:-20px;
-	padding-left:20px;
 }
 
+.space>.pillBox{
+	width:33%;
+}
 
 .pillBox{
 	width: 70px;
 	height: 130px;
 	float:left;
+	border-radius: 40px;
 }
 
 #pillsContainer{	
