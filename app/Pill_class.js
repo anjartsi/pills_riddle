@@ -23,23 +23,3 @@ Pill.prototype.create = function(el) {
 	}
 };
 
-
-
-
-//Choose a pill (to add to either group on the scale)
-//returns the className of the pill
-Pill.prototype.choose = function() {
-	var pillClass = pillID(this.num).className;
-	pillClass += ' selected';
-	this.chosen = true;
-	zCounter++;
-	if(this.chosen){pillID(this.num).style.zIndex=zCounter;}//keep this pill above other pills
-	return pillID(this.num).className = pillClass;
-}
-
-Pill.prototype.unchoose = function() {
-	var pillClass = pillID(this.num).className;
-	pillClass = pillClass.replace(' selected','');
-	this.chosen = false;
-	return pillID(this.num).className = pillClass;
-}
