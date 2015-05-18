@@ -65,31 +65,48 @@ html{
 	border-radius: 25px;
 }
 
-
-#pillsContainer>p{
-	width: 100%;
+.space{
+	display: inline-block;
+	float:left;
+	height:430px;
+	width:13%;
+	text-align: center;
+	background-color: #6677AA;
+	border-radius: 12px;
 }
+#leftSpace{
+	padding-left: 20px;
+	padding-right:-20px;
+}
+#rightSpace{
+	float: right;
+	padding-right:-20px;
+	padding-left:20px;
+}
+
 
 .pillBox{
 	width: 70px;
 	height: 130px;
 	float:left;
-	border:1px dotted black;
 }
 
 #pillsContainer{	
 	width:-webkit-max-content;
 	height:200px;
 	margin:0px auto;
-	background-color: #6677AA;
+	background-color: #99AADD;
+	border-radius: 12px;
 	text-align: center;
+}
+
+#pillsContainer>p{
+	width: 100%;
 }
 
 .pill{
 	height: 120px;
 	width: 60px;
-	left:0px;
-	float:left;
 	text-align: center;
 	font-size: 2em;
 	border-radius: 40px;
@@ -97,8 +114,9 @@ html{
 	background-color: #FFFFFF;
 	color: black;
 	cursor: -webkit-grab;
-	position:relative;
 	margin:5px;
+	float:left;
+	position:relative;
 }
 
 .hovered{
@@ -123,8 +141,12 @@ html{
 	text-align: center;
 	margin:0px;
 	float: left;
-	height: 300px;
+	height: 210px;
 
+}
+
+.scale>h3{
+	text-align: center;
 }
 
 #group1, #group2{
@@ -134,17 +156,18 @@ html{
 	margin: auto;
 }
 
+
 #betweenScaleGroups{
 	width: 1px;
 	margin-left:0.9%;
 	margin-right: 0.9%;
 	border-radius: 5px;
-	background-color: black;
 }
 
 .clearBoth{
 	clear:both;
 }
+
 #buttonContainer{
 	text-align: center;
 	width: 100%;
