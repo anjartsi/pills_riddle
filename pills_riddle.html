@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<link rel="stylesheet" type="text/css" href="css/pills_riddle.css">	
+	<link rel="stylesheet" type="text/css" href="css/pills_riddle.css">		
 	<title>Pills Riddle</title>
 </head>
 
@@ -46,29 +46,38 @@
 
 			<div class='container' id='scaleContainer'>
 				<div class='container scale' id='scaleLeft'>
-					<h3>Scale 1</h3>
+					<h3>
+						Scale 1
+					</h3>
 					<div class='container' id ='scale1'></div>
+						<button id='clearLeft'>Clear</button>
 				</div>
 				<div class='scale' id='betweenScaleGroups'></div>
 				<div class='container scale' id='scaleRight'>
-					<h3>Scale 2</h3>
+					<h3>
+						Scale 2
+					</h3>
 					<div class='container' id ='scale2'></div>
+						<button id='clearRight'>Clear</button>
 				</div>
 				<div class='clearBoth'></div>
+				<div class='container' id='buttonContainer'>
+					<button id='weighButton'>Weigh (&times 3)</button>
+					<button id='clearScale'>Clear All</button>
+				</div>
 				<div class='container scale feedback' id='scaleOneFeedback'></div>
 				<div class='container scale feedback' id='scaleComparison'></div>
 				<div class='container scale feedback' id='scaleTwoFeedback'></div>
 				<div class='clearBoth'></div>
+				<div class='container scale	 feedback disabled' id='answer'>
+					<div class='vertCent'></div>
+					Answer:
+				</div>
 			</div>
 		</div>
 
 		<br>
 
-		<div class='container' id='buttonContainer'>
-			<h2>Buttons!</h2>
-			<button id='weighButton'>Weigh (&times 3)</button>
-			<button id='clearScale'>Clear Scale</button>
-		</div>
 	</div>
 
 	

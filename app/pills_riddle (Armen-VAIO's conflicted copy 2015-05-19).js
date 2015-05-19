@@ -23,7 +23,7 @@ var scale1 = document.getElementById('scale1');
 var scale2 = document.getElementById('scale2');
 var lSpace = document.getElementById('leftSpace');
 var rSpace = document.getElementById('rightSpace');
-var pillBox = document.getElementsByClassName('pillBox');
+var pillBox = document.getElementsByClassName('pillBox')
 
 var pillBoxCreator = function(container,name,count) {
 	for (var i = 0; i <count ; i++) {
@@ -64,9 +64,14 @@ makePills();
 var movePill = function(pillNum,toBox){
 	var pillEl = pillID(pillNum).parentElement.removeChild(pillID(pillNum));
 	var group = toBox;
-	if (group.id.search('_S1_')>0){allPills[pillNum].group=1;}
-	else if (group.id.search('_S2_')>0){allPills[pillNum].group=2;}
-	else {allPills[pillNum].group=0;}
+	var newBox=toBox.id;
+	//Check to see if toBox is full
+	if (!toBox.innerHTML==""){console.log('Full!!')};
+	//If the pill is moved on/off the scale, change its group property
+	if(newBox.search('_S1_')>0){allPills[pillNum].group=1;}
+		else if(newBox.search('_S2_')>0){allPills[pillNum].group=2;}
+		else {allPills[pillNum].group=0;};
+
 	toBox.appendChild(pillEl);
 }
 
