@@ -181,8 +181,8 @@ html{
 }
 
 #answer{
-	height:100px;
-	width: 150px;
+	height:90px;
+	width:145px;
 	position: relative;
 	top:-100px;
 	left:250px;
@@ -192,16 +192,31 @@ html{
 	font-size: 25px;
 }
 
+
+
+#ansText{
+	display:inline;
+	text-align: center;
+	float: left;
+	font-size: 20px;
+	width:85px;
+	color: #999;
+}
+
 .disabled{
 	background-color: #999;
-	color:#444;
+
 }
 
 .enabled{
+	display:inline;
+	float: left;
 	background-color:#6677AA;
 	color:white;
 }
-
+.enabled>#ansText{
+	color:white;
+}
 
 .clearBoth{
 	clear:both;
@@ -231,6 +246,7 @@ purpose is to vertically align contents of pill
 }
 
 #pillBox_ANS_1{
-	float:right;
+	float:left;
 	height:90px;
+	background-color:#9AD; 
 }

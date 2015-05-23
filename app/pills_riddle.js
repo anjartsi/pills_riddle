@@ -11,8 +11,8 @@ function removeClass(el, cls) {
 
 var numPills = 12;
 var poison = parseInt(1+Math.random()*numPills);
-var poisonWeight = 0.1;
-if(Math.random()>0.5){poisonWeight = -0.1};
+var poisonWeight = 1;
+if(Math.random()>0.5){poisonWeight = -1};
 
 var allPills=[];//array of all the Pill objects 
 

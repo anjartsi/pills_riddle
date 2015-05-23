@@ -63,7 +63,7 @@ var printFeedback = function() {
 
 	// Print the Comparison
 	if(difference>0){scaleComparison.innerHTML+='weighs MORE THAN';	}
-	else if(difference>0){scaleComparison.innerHTML+='weighs LESS THAN';	}
+	else if(difference<0){scaleComparison.innerHTML+='weighs LESS THAN';	}
 	else{scaleComparison.innerHTML+='weighs THE SAME AS';}
 
 	// Add a white line to scaleOneFeedback, scaleTwoFeedback, and scaleComparison
@@ -90,7 +90,7 @@ var printFeedback = function() {
 			data = data.split(',');
 			var parentEl = document.getElementById(data[0]);
 			var pillNum = parseInt(data[1],10);
-			if (allPills[pillNum].poison){alert ('Well Done');}
+			if (allPills[pillNum].isPoison){alert ('Well Done');}
 			else{alert("You're Dead!")}
 		});
 	}
