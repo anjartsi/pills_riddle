@@ -4,6 +4,10 @@ html{
 	width: 1300px;
 	margin: auto;
 	font-family: Cambria, Helvetica, "Times New Roman";
+<<<<<<< HEAD
+=======
+	font-size: 1em;
+>>>>>>> origin/master
 	overflow: scroll;
 }
 
@@ -55,13 +59,18 @@ html{
 
 #riddleText{
 	text-align: center;
+<<<<<<< HEAD
 	font-size: 20px;
+=======
+	font-size: 1.2em;
+>>>>>>> origin/master
 }
 
 #actionWindow{
 	width:100%;
 	background-color: #7788BB;
 	border-radius: 25px;
+<<<<<<< HEAD
 	/*border:1px dotted black;*/
 }
 
@@ -88,10 +97,13 @@ html{
 	height: 100px;
 	float:left;
 	border-radius: 5px;
+=======
+>>>>>>> origin/master
 }
 
 #pillsContainer{	
 	width:-webkit-max-content;
+<<<<<<< HEAD
 	height:150px;
 	margin:0px auto;
 	background-color: #99AADD;
@@ -108,11 +120,26 @@ html{
 	width: 50px;
 	text-align: center;
 	font-size: 35px;
+=======
+	margin:0px auto;
+}
+
+
+.pill{
+	height: 120px;
+	position:relative;
+	left:0px;
+	float:left;
+	width: 40px;
+	text-align: center;
+	font-size: 12px;
+>>>>>>> origin/master
 	border-radius: 40px;
 	border: 1px solid black;
 	background-color: #FFFFFF;
 	color: black;
 	cursor: -webkit-grab;
+<<<<<<< HEAD
 	float:left;
 	position:relative;
 }
@@ -124,6 +151,38 @@ html{
 	text-align: center;
 	padding-bottom: 20px;
 	width: 55%;
+=======
+}
+
+.selected{
+	background-color: blue;
+	color: white;
+	cursor:-webkit-grabbing;
+}
+
+/*
+vertCent are divs that go inside pills
+purpose is to vertically align contents of pill
+*/
+.vertCent{
+	height:50%;
+	display:inline-block;
+	border:none;
+}
+
+/*these divs go between pills, and they are for pill spacing*/
+.betweenPills{
+	width:10px;
+	float:left;
+	height: 1px;
+}
+
+#scaleContainer{
+	margin-left: auto;
+	margin-right:auto;
+	padding-bottom: 20px;
+	width: 60%;
+>>>>>>> origin/master
 }
 
 
@@ -131,6 +190,7 @@ html{
 	text-align: center;
 	margin:0px;
 	float: left;
+<<<<<<< HEAD
 	height: 150px;
 
 }
@@ -233,4 +293,30 @@ purpose is to vertically align contents of pill
 #pillBox_ANS_1{
 	float:right;
 	height:90px;
+=======
+	height: 200px;
+
+}
+
+#group1, #group2{
+	width: 49%;
+	background-color: #99AADD;
+	border-radius: 12px;
+}
+
+#betweenScaleGroups{
+	width: 0.2%;
+	margin-left:0.9%;
+	margin-right: 0.9%;
+	border-radius: 5px;
+	background-color: black;
+}
+
+.blank{
+	clear:both;
+}
+#buttonContainer{
+	text-align: center;
+	width: 100%;
+>>>>>>> origin/master
 }
