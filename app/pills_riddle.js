@@ -1,20 +1,11 @@
-// GLOBAL HELPER FUNCTIONS
-function addClass(el, cls) {
-	var classes = el.className.split(' ');
-	classes.push(cls);
-	el.className = classes.join(' ');
-}
-
-function removeClass(el, cls) {
-	el.className = el.className.replace(cls, '');
-}
-
 var numPills = 12;
+// Randomly make one of the pills the poisoned one
 var poison = parseInt(1+Math.random()*numPills);
+// Make the poisoned pill either heavier or lighter
 var poisonWeight = 1;
 if(Math.random()>0.5){poisonWeight = -1};
 
-var allPills=[];//array of all the Pill objects 
+
 
 //List of Elements as Variables
 var actionWindow = document.getElementById('actionWindow');
@@ -25,50 +16,105 @@ var lSpace = document.getElementById('leftSpace');
 var rSpace = document.getElementById('rightSpace');
 var pillBox = document.getElementsByClassName('pillBox');
 
-var pillBoxCreator = function(container,name,count) {
-	for (var i = 0; i <count ; i++) {
-		container.innerHTML+='<div class="container pillBox" id="pillBox_'+name+(i+1)+'"></div>'; 
-	}	
+var allPills=[];//array of all the Pill objects 
+
+/** allPillBoxes
+Array of all the different areas where pillBoxes will be formed
+Each container of pillboxes will have its own index
+For example: allPillBoxes[0] will hold the 12 pillBoxes in
+in the pillsContainer div
+**/ 
+var allPillBoxes=[];
+
+
+// Make a certain number of pillBoxes in a specified container
+var pillBoxCreator = function(container,count) {
+	var pbCont=[];
+	var pbIndex=allPillBoxes.length;
+	for (var i = 1; i <1+count ; i++) {
+		pbCont[i]= new PillBox(pbIndex,i);
+		pbCont[i].create(container);
+	}
+	allPillBoxes.push(pbCont);
 };
 
-pillBoxCreator(pillsContainer,'Cont_',12);
-pillBoxCreator(scale1,'S1_',6);
-pillBoxCreator(scale2,'S2_',6);
-pillBoxCreator(lSpace,'L_',12);
-pillBoxCreator(rSpace,'R_',12);
+// Easy way to access each pillBox element by its html ID
+var pillBoxID = function(pbIndex,pbNum){
+	return document.getElementById('pillBox_'+pbIndex+'_'+pbNum);
+}
+
+// Input: HTML ID of a pillBox
+// Output: corresponding pillBox object
+var pillBoxObject = function(pbEl){
+	var pBox = pbEl.id;
+	var underscore=pBox.indexOf('_');
+	return allPillBoxes[pBox[underscore+1]][pBox[underscore+3]];
+};
 
 //Easy way to access each pill element by its html ID
 var pillID = function(num){
 	return document.getElementById('pill_'+num);
 }
 
-var pillBoxID = function(box,pbNum){
-	return document.getElementById('pillBox_'+box+'_'+pbNum);
-}
-
-var makePills = function() {
+var pillCreator = function() {
 	for(var i=1;i<numPills+1;i++){
 		allPills[i] = new Pill(i);
-		// allPills[i].create(document.getElementById('pillBox_Cont_'+i));
-		allPills[i].create(pillBoxID('Cont',i));
+		allPills[i].create(pillBoxID(0,i));
 	}
 }
 
-makePills();
 
+// Create all the pillBoxes and all the pills
+pillBoxCreator(pillsContainer,12);
+pillBoxCreator(scale1,6);
+pillBoxCreator(scale2,6);
+pillBoxCreator(lSpace,12);
+pillBoxCreator(rSpace,12);
 
+pillCreator();
 
 
 // Move a pill from wherever it waas to a new box
-// toBox must be an element
+// toBox must be an HTML element
 var movePill = function(pillNum,toBox){
-	var pillEl = pillID(pillNum).parentElement.removeChild(pillID(pillNum));
-	var group = toBox;
-	if (group.id.search('_S1_')>0){allPills[pillNum].group=1;}
-	else if (group.id.search('_S2_')>0){allPills[pillNum].group=2;}
-	else {allPills[pillNum].group=0;}
-	toBox.appendChild(pillEl);
+	var pillEl = pillID(pillNum);
+	var destination = toBox;
+	var origin = pillEl.parentElement;
+
+	if(checkPBox(origin,destination,pillNum)){
+		pillEl= pillEl.parentElement.removeChild(pillID(pillNum));
+		destination.appendChild(pillEl);
+	}
 }
+
+// Checks to see if destination pillBox of a movePill is full
+// If the destination is empty, it changes the attributes of 
+// the 2 pillBoxes accordingly
+var checkPBox = function(fromBox,toBox,pillNum) {
+	var from =  pillBoxObject(fromBox);
+	var to =  pillBoxObject(toBox);
+	// If a pill is dragged onto an already full pillBox, 
+	// It will be moved into the next available one in the same group
+	if(to.isFull){
+		// If al the pillBoxes in a group are full, then the pill won't be moved
+		if (to.num+1<allPillBoxes[to.cont].length){
+			var newDest=pillBoxID(to.cont,to.num+1); 
+		}
+		else{
+			return false;
+		}
+
+		return movePill(pillNum,newDest);
+	}
+	else{
+		from.pill=0;
+		from.isFull=false;
+		to.pill=pillNum;
+		to.isFull=true;
+		return true;
+	}
+}
+
 
 // ~~~ Listeners ~~~
 var pillBoxListeners=[];
@@ -79,50 +125,46 @@ pillListeners.push(function(pillNum) {
 	pillID(pillNum).addEventListener('dragstart',function(e) {
 		var parentEl = pillID(pillNum).parentElement;
 		var data = [parentEl.id,pillNum];
+		// data[0] is the parent element (pillBox)
+		// data[1] is the pillNum
 		e.dataTransfer.setData("application/pill_number", data);
 
-		/**
-		data[0] is the parent element	
-		data[1] is the pillNum
-		**/
 	});
 });
 
 var pbDragEnterListener = function(e) {
 	//Can't add 2 pills to the same pillBox
-	if(!e.currentTarget.innerHTML){
-		e.preventDefault();
-		e.currentTarget.style.backgroundColor="#112233";
-		e.currentTarget.style.opacity="0.6";
-	}
+	var toBox = pillBoxObject(e.currentTarget); // pillBox Object
+	var destination = pillBoxID(toBox.cont,toBox.num); //pillBox Element
+
+	e.preventDefault();
+	destination.style.backgroundColor="#112233";
+	destination.style.opacity="0.6";
 }
 
 var pbDragLeaveListener = function(e) {
-	e.currentTarget.style.backgroundColor='';
-		e.currentTarget.style.opacity="1";
+	var toBox = pillBoxObject(e.currentTarget); // pillBox Object
+	var destination = pillBoxID(toBox.cont,toBox.num); //pillBox Element
+
+	destination.style.backgroundColor='';
+	destination.style.opacity="1";
 }
 
 var pbDropListener = function(e) {
-	var data = e.dataTransfer.getData('application/pill_number');
-	data = data.split(',');
-	var parentEl = document.getElementById(data[0]);
-	var pillNum = parseInt(data[1],10);
-	
-	movePill(pillNum,e.currentTarget);
-	e.currentTarget.style.backgroundColor='';
-	e.currentTarget.style.opacity="1";
+	var info = e.dataTransfer.getData('application/pill_number');
+	info = info.split(',');
+	var pillNum = parseInt(info[1],10);
+	var origin = document.getElementById(info[0]);
+	var toBox = pillBoxObject(e.currentTarget); // pillBox Object
+	var destination = pillBoxID(toBox.cont,toBox.num); //pillBox Element
+
+	movePill(pillNum,destination);
+	destination.style.backgroundColor='';
+	destination.style.opacity="1";
 
 	// Change the group property of the pill to match the scale it's on
-	var parent =e.currentTarget.parentElement;
-	if (parent.id=='scale1'){
-		allPills[pillNum].group=1;
-	}
-	else if (parent.id=='scale2'){
-		allPills[pillNum].group=2;
-	}
-	else {
-		allPills[pillNum].group=0;
-	}
+	allPills[pillNum].group=toBox.cont;
+
 }
 
 pillBoxListeners.push(function(pbNum){
@@ -163,3 +205,14 @@ pillBoxListeners.push(function(pbNum){
 	pillBox[pbNum].addEventListener('drop',pbDropListener);
 });
 ****/
+
+// GLOBAL HELPER FUNCTIONS
+function addClass(el, cls) {
+	var classes = el.className.split(' ');
+	classes.push(cls);
+	el.className = classes.join(' ');
+}
+
+function removeClass(el, cls) {
+	el.className = el.className.replace(cls, '');
+}

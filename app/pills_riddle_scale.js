@@ -96,15 +96,6 @@ var printFeedback = function() {
 	}
 }
 
-
-
-
-
-
-
-
-
-
 var useScale = function() {
 	if(scaleUses>0){
 		scaleUses--;

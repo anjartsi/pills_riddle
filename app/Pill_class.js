@@ -29,12 +29,17 @@ Pill.prototype.create = function(el) {
 var PillBox = function(cont,num) {
 	this.cont = cont;
 	this.num = num;
-	this.cont = 0; //the pillNum of the pill that is in this pillBox
+	this.pill = 0; // the pillNum of the pill that is in this pillBox
 	this.isFull = false; 
-	this.htmlString = '<div class="container pillBox" id="pillBox_'+cont+'_'+(num)+'"></div>';
+	this.htmlString = '<div class="container pillBox" id="pillBox_'+cont+'_'+num+'"></div>';
+
 }
 
 PillBox.prototype.create = function(el){
 	el.innerHTML+=this.htmlString;
+}
 
+//check to see if a pillBox was opened (its contents changed)
+PillBox.prototype.opened = function() {
+	
 }
