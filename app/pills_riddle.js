@@ -72,6 +72,7 @@ pillBoxCreator(lSpace,12);
 pillBoxCreator(rSpace,12);
 
 pillCreator();
+pillBox = document.getElementsByClassName('pillBox');
 
 
 // Move a pill from wherever it waas to a new box
