@@ -39,7 +39,3 @@ PillBox.prototype.create = function(el){
 	el.innerHTML+=this.htmlString;
 }
 
-//check to see if a pillBox was opened (its contents changed)
-PillBox.prototype.opened = function() {
-	
-}

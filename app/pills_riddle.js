@@ -48,7 +48,9 @@ var pillBoxID = function(pbIndex,pbNum){
 var pillBoxObject = function(pbEl){
 	var pBox = pbEl.id;
 	var underscore=pBox.indexOf('_');
-	return allPillBoxes[pBox[underscore+1]][pBox[underscore+3]];
+	var pbCont = pBox[underscore+1];
+	var pbNum=pBox.substr(underscore+3);
+	return allPillBoxes[pbCont][pbNum];
 };
 
 //Easy way to access each pill element by its html ID
@@ -86,6 +88,7 @@ var movePill = function(pillNum,toBox){
 		pillEl= pillEl.parentElement.removeChild(pillID(pillNum));
 		destination.appendChild(pillEl);
 	}
+
 }
 
 // Checks to see if destination pillBox of a movePill is full
@@ -100,18 +103,19 @@ var checkPBox = function(fromBox,toBox,pillNum) {
 		// If al the pillBoxes in a group are full, then the pill won't be moved
 		if (to.num+1<allPillBoxes[to.cont].length){
 			var newDest=pillBoxID(to.cont,to.num+1); 
+			return movePill(pillNum,newDest);
 		}
 		else{
 			return false;
 		}
 
-		return movePill(pillNum,newDest);
 	}
 	else{
 		from.pill=0;
 		from.isFull=false;
 		to.pill=pillNum;
 		to.isFull=true;
+		allPills[pillNum].group=to.cont;
 		return true;
 	}
 }
@@ -134,7 +138,6 @@ pillListeners.push(function(pillNum) {
 });
 
 var pbDragEnterListener = function(e) {
-	//Can't add 2 pills to the same pillBox
 	var toBox = pillBoxObject(e.currentTarget); // pillBox Object
 	var destination = pillBoxID(toBox.cont,toBox.num); //pillBox Element
 
@@ -164,21 +167,26 @@ var pbDropListener = function(e) {
 	destination.style.opacity="1";
 
 	// Change the group property of the pill to match the scale it's on
-	allPills[pillNum].group=toBox.cont;
+
 
 }
 
-pillBoxListeners.push(function(pbNum){
-	pillBox[pbNum].addEventListener('dragenter',pbDragEnterListener);
-	pillBox[pbNum].addEventListener('dragover',pbDragEnterListener);
-	pillBox[pbNum].addEventListener('dragleave',pbDragLeaveListener);
-	pillBox[pbNum].addEventListener('drop',pbDropListener);
+pillBoxListeners.push(function(pbID){
+	pbID.addEventListener('dragenter',pbDragEnterListener);
+	pbID.addEventListener('dragover',pbDragEnterListener);
+	pbID.addEventListener('dragleave',pbDragLeaveListener);
+	pbID.addEventListener('drop',pbDropListener);
 });
 
 
-for (var i=0;i<pillBox.length;i++){
-	for (var j=0;j<pillBoxListeners.length;j++){
-		pillBoxListeners[j](i);
+var currentPill;
+for (var i=0;i<allPillBoxes.length;i++) {
+	for (var j=1;j<allPillBoxes[i].length;j++){
+		currentPill=allPillBoxes[i][j];
+		console.log(currentPill)
+		for(var k=0;k<pillBoxListeners.length;k++){
+			pillBoxListeners[k](pillBoxID(currentPill.cont,currentPill.num));
+		}
 	}
 }
 

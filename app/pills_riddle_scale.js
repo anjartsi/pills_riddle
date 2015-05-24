@@ -107,6 +107,7 @@ var clearLeftScale = function() {
 	for(var i=0;i<pillsOnScale[0].length;i++){
 		movePill(pillsOnScale[0][i],pillBoxID(3,1))
 	}
+	pillsOnScale[0].length=0;
 }
 
 var clearRightScale = function() {
@@ -114,6 +115,7 @@ var clearRightScale = function() {
 	for(var i=0;i<pillsOnScale[1].length;i++){
 		movePill(pillsOnScale[1][i],pillBoxID(4,1))
 	}
+	pillsOnScale[1].length=0;
 }
 
 var clearScales = function() {

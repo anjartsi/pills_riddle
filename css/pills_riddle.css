@@ -213,6 +213,8 @@ html{
 	float: left;
 	background-color:#6677AA;
 	color:white;
+
+	border: 3px dashed black;
 }
 .enabled>#ansText{
 	color:white;
