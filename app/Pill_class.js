@@ -6,7 +6,10 @@ var Pill = function(num) {
 	this.num=num;
 	this.isPoison = false;
 	this.weight = 10;
-	this.htmlString = '<div class="pill" id="pill_'+num+'" draggable="true">'+num+'<div class="vertCent"></div></div>';
+	this.htmlString = '<button class="pill" id="pill_'+num+'" draggable="true">'+num+'</button>';
+
+	this.isChosen = false;
+
 	//Group number: should be either 1 or 2 depending on which side of the scale it's on
 	this.group = 0;
 } 
@@ -20,6 +23,16 @@ Pill.prototype.create = function(el) {
 	}
 };
 
+Pill.prototype.choose = function(){
+	addClass(pillID(this.num),'pillClicked');
+	this.isChosen = true;
+}
+	
+
+Pill.prototype.unchoose = function() {
+	removeClass(pillID(this.num),'pillClicked');
+	this.isChosen = false;
+}
 
 
 /*************************

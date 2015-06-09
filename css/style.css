@@ -116,8 +116,19 @@ html{
 	float:left;
 	position:relative;
 }
+.pill:focus{
+	outline: none;
+}
 
+.pillHover{
+	background-color: #AAA;
+	cursor: pointer;
+}
 
+.pillClicked{
+	background-color: #33F;
+	color:white;
+}
 
 #scaleContainer{
 	margin: 0px auto;
@@ -237,6 +248,38 @@ html{
 	color: black;
 	border-radius: 10px;
 }
+
+#controlWindow{
+	background-color: #7788BB;
+	padding:0px;
+	margin:auto;
+	width:-webkit-max-content;
+	text-align: center;
+	border-radius: 5px;
+}
+
+
+.controlButton{
+	margin:0px;
+	background-color: #99AADD;
+	height: 50px;
+	width: 200px;
+	font-size: 25px;
+	
+	color: white;
+	border:none;	
+	border-radius: 10px;
+}
+
+.dragOrClick{
+	background-color: #6677AA;
+	border: 2px dotted #444566;
+}
+
+.controlButton:focus{
+	outline:none;
+}
+
 /*
 vertCent are divs that go inside pills
 purpose is to vertically align contents of pill

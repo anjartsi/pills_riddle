@@ -17,6 +17,15 @@ var clearScale = document.getElementById('clearScale');
 var clearLeft = document.getElementById('clearLeft');
 var clearRight = document.getElementById('clearRight');
 var answer = document.getElementById('answer');
+var dragButton = document.getElementById('dragButton');
+var clickButton = document.getElementById('clickButton');
+var actionWindow = document.getElementById('actionWindow');
+var pillsContainer = document.getElementById('pillsContainer');
+var scale1 = document.getElementById('scale1');
+var scale2 = document.getElementById('scale2');
+var lSpace = document.getElementById('leftSpace');
+var rSpace = document.getElementById('rightSpace');
+
 
 var weigh = function(cont) {
 	var weight = 0;
@@ -123,11 +132,35 @@ var clearScales = function() {
 	clearLeftScale();
 }
 
+var dragging = function() {
+	toggleClass(dragButton,'dragOrClick');
+	toggleClass(clickButton,'dragOrClick');
+	removeClass(clickButton,'dragOrClick');
+	dragOn = true;
+}
+
+var clicking = function() {
+	toggleClass(dragButton,'dragOrClick');
+	toggleClass(clickButton,'dragOrClick');
+	removeClass(dragButton,'dragOrClick');
+	dragOn = false;
+}
+
+if(dragOn){
+	dragging();
+}
+else{
+	clicking();
+}
+
 var buttonEventListeners = function() {
 	weighButton.addEventListener('mousedown',useScale);
 	clearScale.addEventListener('mousedown',clearScales);
 	clearLeft.addEventListener('mousedown',clearLeftScale);
 	clearRight.addEventListener('mousedown',clearRightScale);
+	dragButton.addEventListener('mousedown',dragging);
+	clickButton.addEventListener('mousedown',clicking);
+
 }
 
 buttonEventListeners();
