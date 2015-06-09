@@ -84,10 +84,13 @@ html{
 }
 
 .pillBox{
+	text-align: center;
+	border: 1px dotted white;
 	width: 55px;
 	height: 100px;
 	float:left;
 	border-radius: 5px;
+
 }
 
 #pillsContainer{	
@@ -104,6 +107,8 @@ html{
 }
 
 .pill{
+	margin-left:2.5px;
+	margin-top: 5px;
 	height: 90px;
 	width: 50px;
 	text-align: center;
@@ -264,16 +269,17 @@ html{
 	background-color: #99AADD;
 	height: 50px;
 	width: 200px;
-	font-size: 25px;
+	font-size: 20px;
 	
-	color: white;
+	color: #C22;
 	border:none;	
 	border-radius: 10px;
 }
 
-.dragOrClick{
+.disableDragClick{
 	background-color: #6677AA;
 	border: 2px dotted #444566;
+	color: white;
 }
 
 .controlButton:focus{

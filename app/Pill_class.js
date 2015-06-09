@@ -26,12 +26,14 @@ Pill.prototype.create = function(el) {
 Pill.prototype.choose = function(){
 	addClass(pillID(this.num),'pillClicked');
 	this.isChosen = true;
+	chosenPills.push(this.num);
 }
 	
 
 Pill.prototype.unchoose = function() {
 	removeClass(pillID(this.num),'pillClicked');
 	this.isChosen = false;
+	removeFromChosen(this.num);
 }
 
 

@@ -86,6 +86,7 @@ var scaleDead = function() {
 	document.getElementById('pillBox_5_1').addEventListener('dragover', pbDragEnterListener);
 	document.getElementById('pillBox_5_1').addEventListener('dragleave', pbDragLeaveListener);
 	document.getElementById('pillBox_5_1').addEventListener('drop', pbDropListener);
+	document.getElementById('pillBox_5_1').addEventListener('mousedown', pbClickDrop);
 	document.getElementById('pillBox_5_1').addEventListener('drop', function(e){
 		var data = e.dataTransfer.getData('application/pill_number');
 		data = data.split(',');
@@ -132,34 +133,36 @@ var clearScales = function() {
 	clearLeftScale();
 }
 
-var dragging = function() {
-	toggleClass(dragButton,'dragOrClick');
-	toggleClass(clickButton,'dragOrClick');
-	removeClass(clickButton,'dragOrClick');
-	dragOn = true;
+var toggleDragging = function() {
+	toggleClass(dragButton,'disableDragClick');
+	dragging = (!dragging);
+	if(dragging){
+		dragButton.innerHTML='Dragging Enabled';
+	}
+	else{
+		dragButton.innerHTML='Dragging Disabled';
+	}
 }
 
-var clicking = function() {
-	toggleClass(dragButton,'dragOrClick');
-	toggleClass(clickButton,'dragOrClick');
-	removeClass(dragButton,'dragOrClick');
-	dragOn = false;
+var toggleClicking = function() {
+	toggleClass(clickButton,'disableDragClick');
+	clicking = (!clicking);
+	if(clicking){
+		clickButton.innerHTML='Clicking Enabled';
+	}
+	else{
+		clickButton.innerHTML='Clicking Disabled';
+	}
 }
 
-if(dragOn){
-	dragging();
-}
-else{
-	clicking();
-}
 
 var buttonEventListeners = function() {
 	weighButton.addEventListener('mousedown',useScale);
 	clearScale.addEventListener('mousedown',clearScales);
 	clearLeft.addEventListener('mousedown',clearLeftScale);
 	clearRight.addEventListener('mousedown',clearRightScale);
-	dragButton.addEventListener('mousedown',dragging);
-	clickButton.addEventListener('mousedown',clicking);
+	dragButton.addEventListener('mousedown',toggleDragging);
+	clickButton.addEventListener('mousedown',toggleClicking);
 
 }
 
