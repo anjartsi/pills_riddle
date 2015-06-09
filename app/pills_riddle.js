@@ -1,15 +1,7 @@
 // ~~ Clicking instead of dragging
 var dragging = true;
 var clicking = true;
-var chosenPills= [];
 
-//Removes the selected pillNum from chosenPills
-var removeFromChosen = function(pn){
-	var i = chosenPills.indexOf(pn);
-	if(i!=-1){
-		chosenPills.splice(i,1)
-	}
-}
 
 //List of Elements as Variables
 var actionWindow = document.getElementById('actionWindow');
@@ -50,15 +42,14 @@ var checkPBox = function(fromBox,toBox,pillNum) {
 	if(toObj.isFull){
 		if(noInfLoop<numPills+2){
 			// If al the pillBoxes in a group are full, then the pill won't be moved
-			if (toObj.num+1<2*contSize){
 				var x = toObj.num;
 				x=x%contSize+1;
 				var newDest=pillBoxID(toObj.cont,x); 
 				noInfLoop++;
 				return movePill(pillNum,newDest);
 			}
-			else{return false;}
-		}
+		else{return false;}
+		
 	}
 	else{
 		noInfLoop=0;
@@ -102,11 +93,11 @@ var pillHoverOff = function(e) {
 
 var pillClick = function(e) {
 		var pillNum = parseInt((e.target).innerHTML,10);//the pillNum of the dragged pill
-		console.log(pillNum)
 		if(allPills[pillNum].isChosen){
 			allPills[pillNum].unchoose();
 		}
 		else if(!allPills[pillNum].isChosen){allPills[pillNum].choose();}	
+
 	}
 
 
@@ -146,6 +137,7 @@ var pbDragLeaveListener = function(e) {
 }
 
 var pbDropListener = function(e) {
+		e.preventDefault();
 		var info = e.dataTransfer.getData('application/pill_number');
 		info = info.split(',');
 		var pillNum = parseInt(info[1],10);
@@ -155,7 +147,9 @@ var pbDropListener = function(e) {
 		var chosenCount=chosenPills.length;
 	if(dragging){
 		if(toBox.cont!=pillBoxObject(origin).cont){
-			for(var i=0;i<chosenCount;i++){movePill(chosenPills[0],destination);}
+			for(var i=0;i<chosenCount;i++){
+				movePill(chosenPills[0],destination);
+			}
 			destination.style.backgroundColor='';
 			destination.style.opacity="1 ";
 		}
@@ -167,7 +161,6 @@ var pbClickDrop = function(e) {
 	var chosenCount=chosenPills.length;
 
 	if(hasClass(e.target,'pillBox')){
-	console.log('click!')
 		if(clicking){
 			for(var i=0;i<chosenCount;i++){
 				movePill(chosenPills[0],destination);

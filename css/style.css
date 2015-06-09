@@ -84,9 +84,7 @@ html{
 }
 
 .pillBox{
-	z-index: 1;
 	text-align: center;
-	border: 1px dotted white;
 	width: 55px;
 	height: 100px;
 	float:left;
@@ -108,7 +106,6 @@ html{
 }
 
 .pill{
-	z-index: 3;
 	margin-left:2.5px;
 	margin-top: 5px;
 	height: 90px;

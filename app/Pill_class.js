@@ -54,3 +54,17 @@ PillBox.prototype.create = function(el){
 	el.innerHTML+=this.htmlString;
 }
 
+
+
+
+// ~~~~chosen
+var chosenPills= [];
+
+//Removes the selected pillNum from chosenPills
+var removeFromChosen = function(pn) {
+
+	var i = chosenPills.indexOf(pn);
+	if(i!=-1){
+		chosenPills.splice(i,1)
+	}
+}
