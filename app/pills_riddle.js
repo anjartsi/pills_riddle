@@ -183,7 +183,6 @@ var currentPill;
 for (var i=0;i<allPillBoxes.length;i++) {
 	for (var j=1;j<allPillBoxes[i].length;j++){
 		currentPill=allPillBoxes[i][j];
-		console.log(currentPill)
 		for(var k=0;k<pillBoxListeners.length;k++){
 			pillBoxListeners[k](pillBoxID(currentPill.cont,currentPill.num));
 		}
