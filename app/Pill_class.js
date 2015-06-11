@@ -31,7 +31,9 @@ Pill.prototype.choose = function(){
 	
 
 Pill.prototype.unchoose = function() {
-	removeClass(pillID(this.num),'pillClicked');
+	do{
+		removeClass(pillID(this.num),'pillClicked');
+	} while (hasClass(pillID(this.num),'pillClicked'));
 	this.isChosen = false;
 	removeFromChosen(this.num);
 }
@@ -60,11 +62,16 @@ PillBox.prototype.create = function(el){
 // ~~~~chosen
 var chosenPills= [];
 
-//Removes the selected pillNum from chosenPills
-var removeFromChosen = function(pn) {
+//Removes Duplicates from Chosen
+var removeDuplicatesFromChosen = function() {
+	for(var i=1;i<chosenPills.length;i++){
+		if(chosenPills[i-1]==chosenPills[i]){chosenPills.splice(i,1);}
+	}
+}
 
-	var i = chosenPills.indexOf(pn);
-	if(i!=-1){
-		chosenPills.splice(i,1)
+// Removes a selected pill from the chosenPills
+var removeFromChosen = function (pillNum) {
+	for (var i=0;i<chosenPills.length;i++) {
+		if(chosenPills[i]==pillNum){chosenPills.splice(i,1);}
 	}
 }

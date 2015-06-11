@@ -1,50 +1,4 @@
 html{
-	background-color: #8899CC;
-	color: white;
-	width: 1300px;
-	margin: auto;
-	font-family: Cambria, Helvetica, "Times New Roman";
-	overflow: scroll;
-}
-
-#navBar{
-	border-radius: 0.4em;
-	background-color: #444566;
-	font-size: 1.2em;
-	height: 1.4em;
-	display: inline-table;
-	
-}
-
-#navBar ul{
-	list-style-type: none;
-	padding: 0px;
-}
-
-#navBar ul li{
-	display: inline-block;
-	margin-left: 5px;
-	margin-right: 5px;
-}
-
-#navBar a:link,#navBar a:visited{
-	text-decoration: none;
-	color: white;
-}
-
-
-#navBar a:hover{
-	color: #AAAAFF;
-}
-
-#navBar a:active{
-	text-decoration: none;
-}
-
-/*********************************************
-The above was copied from the style.css from armenourfalian.com
-*/
-html{
 	-webkit-user-select:none;
 }
 #pageBody{
@@ -96,6 +50,11 @@ html{
 
 }
 
+.pillBoxHighlight{
+	background-color: #112233;
+	opacity: 0.6;
+}
+
 #pillsContainer{	
 	width:-webkit-max-content;
 	height:150px;
@@ -129,7 +88,7 @@ html{
 }
 
 .pillHover{
-	background-color: #AAA;
+	background-color: #CCC;
 	cursor: pointer;
 }
 

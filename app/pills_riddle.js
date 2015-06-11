@@ -19,13 +19,11 @@ var movePill = function(pillNum,toBox){
 	var pillEl = pillID(pillNum);
 	var destination = toBox;
 	var origin = pillEl.parentElement;
-	
-
-		if(checkPBox(origin,destination,pillNum)){
-			pillEl= pillEl.parentElement.removeChild(pillID(pillNum));
-			destination.appendChild(pillEl);
-			console.log("Moved Pill#"+pillNum+" From: " +pillBoxObject(origin).num+" To: "+pillBoxObject(destination).num);
-		}	
+	if(chosenPills.length==0){return}
+	if(checkPBox(origin,destination,pillNum)){
+		pillEl= pillEl.parentElement.removeChild(pillID(pillNum));
+		destination.appendChild(pillEl);
+	}	
 }
 
 // Checks to see if destination pillBox of a movePill is full
@@ -105,11 +103,13 @@ pillListeners.push(function(pillNum) {
 	pillID(pillNum).addEventListener('dragstart',pillDragStart);
 	pillID(pillNum).addEventListener('mouseover',pillHoverOn);
 	pillID(pillNum).addEventListener('mouseleave',pillHoverOff);
-	pillID(pillNum).addEventListener('click',pillClick);
+	pillID(pillNum).addEventListener('mouseup',pillClick);
 });
 
 
 var pbDragEnterListener = function(e) {
+	removeDuplicatesFromChosen();
+
 	if(dragging){
 		var info = e.dataTransfer.getData('application/pill_number');
 		info = info.split(',');
@@ -119,8 +119,8 @@ var pbDragEnterListener = function(e) {
 		var destination = pillBoxID(toBox.cont,toBox.num); //pillBox Element
 		if(toBox.cont!=pillBoxObject(origin).cont){
 			e.preventDefault();
-			destination.style.backgroundColor="#112233";
-			destination.style.opacity="0.6";
+			if(!hasClass(destination,'pillBoxHighlight'))
+			addClass(destination,'pillBoxHighlight')
 		}
 	}
 }
@@ -130,28 +130,29 @@ var pbDragLeaveListener = function(e) {
 	if(dragging){
 		var toBox = pillBoxObject(e.currentTarget); // pillBox Object
 		var destination = pillBoxID(toBox.cont,toBox.num); //pillBox Element
-
-		destination.style.backgroundColor='';
-		destination.style.opacity="1";
+	do{
+		removeClass(destination,'pillBoxHighlight');
+	} while (hasClass(destination,'pillBoxHighlight'));
 	}
 }
 
 var pbDropListener = function(e) {
-		e.preventDefault();
-		var info = e.dataTransfer.getData('application/pill_number');
-		info = info.split(',');
-		var pillNum = parseInt(info[1],10);
-		var origin = document.getElementById(info[0]);
-		var toBox = pillBoxObject(e.currentTarget); // pillBox Object
-		var destination = pillBoxID(toBox.cont,toBox.num); //pillBox Element
-		var chosenCount=chosenPills.length;
+	e.preventDefault();
+	var info = e.dataTransfer.getData('application/pill_number');
+	info = info.split(',');
+	var pillNum = parseInt(info[1],10);
+	var origin = document.getElementById(info[0]);
+	var toBox = pillBoxObject(e.target); // pillBox Object
+	var destination = pillBoxID(toBox.cont,toBox.num); //pillBox Element
+	var chosenCount=chosenPills.length;
 	if(dragging){
 		if(toBox.cont!=pillBoxObject(origin).cont){
 			for(var i=0;i<chosenCount;i++){
 				movePill(chosenPills[0],destination);
+				do{
+					removeClass(destination,'pillBoxHighlight');
+				} while (hasClass(destination,'pillBoxHighlight'));
 			}
-			destination.style.backgroundColor='';
-			destination.style.opacity="1 ";
 		}
 	}
 }
