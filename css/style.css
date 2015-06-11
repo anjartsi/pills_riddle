@@ -80,15 +80,19 @@ html{
 }
 
 .space>.pillBox{
-	width:25%;
+	width:23%;
 }
 
 .pillBox{
 	text-align: center;
-	width: 55px;
+	width: 53px;
 	height: 100px;
 	float:left;
-	border-radius: 5px;
+	border: 1px dashed #384488;
+	margin-top:0px;
+	margin-bottom: -1px;
+	margin-right:1px;
+	margin-left:1px;
 
 }
 
