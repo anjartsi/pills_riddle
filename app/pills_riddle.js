@@ -19,7 +19,7 @@ var movePill = function(pillNum,toBox){
 	var pillEl = pillID(pillNum);
 	var destination = toBox;
 	var origin = pillEl.parentElement;
-	if(chosenPills.length==0){return}
+	// if(chosenPills.length==0){return}
 	if(checkPBox(origin,destination,pillNum)){
 		pillEl= pillEl.parentElement.removeChild(pillID(pillNum));
 		destination.appendChild(pillEl);
@@ -90,11 +90,14 @@ var pillHoverOff = function(e) {
 }
 
 var pillClick = function(e) {
+	if(clicking){
+
 		var pillNum = parseInt((e.target).innerHTML,10);//the pillNum of the dragged pill
 		if(allPills[pillNum].isChosen){
 			allPills[pillNum].unchoose();
 		}
 		else if(!allPills[pillNum].isChosen){allPills[pillNum].choose();}	
+	}
 
 	}
 

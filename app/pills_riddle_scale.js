@@ -26,6 +26,7 @@ var scale2 = document.getElementById('scale2');
 var lSpace = document.getElementById('leftSpace');
 var rSpace = document.getElementById('rightSpace');
 var checkAnswer = document.getElementById('checkAnswer');
+var resetButton = document.getElementById('resetButton');
 
 var weigh = function(cont) {
 	var weight = 0;
@@ -157,6 +158,17 @@ var toggleClicking = function() {
 	}
 }
 
+var resetProblem = function() {
+	poison = parseInt(1+Math.random()*numPills);
+	poisonWeight = 1;
+	if(Math.random()>0.5){poisonWeight = -1};
+	scaleUses=3;
+	console.log(poison+" , "+poisonWeight)
+	for(var i=1;i<numPills+1;i++){
+		pillID(i).remove();		
+	}
+	pillCreator();
+}
 
 var buttonEventListeners = function() {
 	weighButton.addEventListener('mousedown',useScale);
@@ -165,6 +177,7 @@ var buttonEventListeners = function() {
 	clearRight.addEventListener('mousedown',clearRightScale);
 	dragButton.addEventListener('mousedown',toggleDragging);
 	clickButton.addEventListener('mousedown',toggleClicking);
+	resetButton.addEventListener('mousedown',resetProblem);
 
 }
 

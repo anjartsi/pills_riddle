@@ -29,7 +29,7 @@ in the pillsContainer div
 var allPillBoxes=[];
 
 
-// Make a certain number of pillBoxes in a specified container
+// Create a certain number of pillBoxes in a specified container
 var pillBoxCreator = function(container,count) {
 	var pbCont=[];
 	var pbIndex=allPillBoxes.length;
