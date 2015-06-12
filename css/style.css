@@ -16,7 +16,7 @@ html{
 	width:100%;
 	background-color: #7788BB;
 	border-radius: 25px;
-	/*border:1px dotted black;*/
+	height:600px;
 }
 
 .space{
@@ -159,10 +159,12 @@ html{
 }
 
 #answer{
-	height:90px;
+	border: 3px dashed black;
+	height:135px;
 	width:145px;
+	padding:1px;
 	position: relative;
-	top:-100px;
+	top:-125px;
 	left:250px;
 	border-radius: 12px;
 	float: right;
@@ -178,29 +180,35 @@ html{
 	float: left;
 	font-size: 20px;
 	width:85px;
-	color: #7788BB;
 }
 
-.disabled{
-	background-color: #7788BB;
+#answerPB{
+	float:left;
+	border:none;
+}
 
+#checkAnswer{
+	height: 25px;
+	width:100%;
+	display:inline;
+	clear:both;
+	border-radius: 10px;
+
+}
+.disabled{
+	opacity:0;
 }
 
 .enabled{
-	display:inline;
-	float: left;
-	background-color:#6677AA;
-	color:white;
+	opacity:1.0;
+}
 
-	border: 3px dashed black;
-}
-.enabled>#ansText{
-	color:white;
-}
+
 
 .clearBoth{
 	clear:both;
 }
+
 
 #buttonContainer{
 	text-align: center;
@@ -217,6 +225,8 @@ html{
 }
 
 #controlWindow{
+	position: relative;
+	top:-150px;
 	background-color: #7788BB;
 	padding:0px;
 	margin:auto;

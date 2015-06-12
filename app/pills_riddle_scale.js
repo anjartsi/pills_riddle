@@ -25,7 +25,7 @@ var scale1 = document.getElementById('scale1');
 var scale2 = document.getElementById('scale2');
 var lSpace = document.getElementById('leftSpace');
 var rSpace = document.getElementById('rightSpace');
-
+var checkAnswer = document.getElementById('checkAnswer');
 
 var weigh = function(cont) {
 	var weight = 0;
@@ -79,21 +79,23 @@ var scaleDead = function() {
 	// Enable the answer div
 	removeClass(answer,'disabled');
 	addClass(answer,'enabled');
+	removeClass(checkAnswer,'disabled');
+	addClass(checkAnswer,'enabled');
 
 	// Create pillBox in answer div
-	pillBoxCreator(answer,1);
+	pillBoxCreator(answerPB,1);
 	document.getElementById('pillBox_5_1').addEventListener('dragenter', pbDragEnterListener);
 	document.getElementById('pillBox_5_1').addEventListener('dragover', pbDragEnterListener);
 	document.getElementById('pillBox_5_1').addEventListener('dragleave', pbDragLeaveListener);
 	document.getElementById('pillBox_5_1').addEventListener('drop', pbDropListener);
 	document.getElementById('pillBox_5_1').addEventListener('mousedown', pbClickDrop);
-	document.getElementById('pillBox_5_1').addEventListener('drop', function(e){
-		var data = e.dataTransfer.getData('application/pill_number');
-		data = data.split(',');
-		var parentEl = document.getElementById(data[0]);
-		var pillNum = parseInt(data[1],10);
-		if (allPills[pillNum].isPoison){alert ('Well Done');}
-		else{alert("You're Dead!")}
+	document.getElementById('checkAnswer').addEventListener('click', function(e){
+		var pb = pillBoxObject(document.getElementById('pillBox_5_1'));
+		if(allPills[pb]){
+			if (allPills[pb.pill].isPoison){alert ('Well Done');}
+			else{alert("You're Dead!")}
+			
+		}
 	});
 }
 
