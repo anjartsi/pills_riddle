@@ -12,46 +12,264 @@ html{
 	font-size: 20px;
 }
 
-/*Action Window*/
 #actionWindow{
 	width:100%;
 	background-color: #7788BB;
 	border-radius: 25px;
+	height:600px;
 }
 
-.tRow{
-	display:table-row;
+.space{
+	display: inline-block;
+	float:left;
+	height:370px;
+	width:20%;
+	text-align: center;
+	background-color: #6677AA;
+	border-radius: 12px;
+}
+
+#rightSpace{
+	float: right;
+}
+
+.space>.pillBox{
+	width:23%;
+}
+
+.pillBox{
+	text-align: center;
+	width: 53px;
+	height: 100px;
+	float:left;
+	border: 1px dashed #384488;
+	margin-top:0px;
+	margin-bottom: -1px;
+	margin-right:1px;
+	margin-left:1px;
+
+}
+
+.pillBoxHighlight{
+	background-color: #112233;
+	opacity: 0.6;
+}
+
+#pillsContainer{	
+	width:-webkit-max-content;
+	height:150px;
+	margin:0px auto;
+	background-color: #99AADD;
+	border-radius: 12px;
+	text-align: center;
+}
+
+#pillsContainer>p{
 	width: 100%;
 }
 
-.tCell{
-	float:left;
+.pill{
+	margin-left:2.5px;
+	margin-top: 5px;
+	height: 90px;
+	width: 50px;
 	text-align: center;
-}
-
-
-
-
-#actionTable{
-	width:100%;
-}
-
-
-#pillsContainer{
-	width: 60%;
-}
-
-#lSpace, #rSpace{
-	width:20%;
-	height: 400px;
-
-}
-
-td, th{
-	text-align: center;
+	font-size: 35px;
+	border-radius: 40px;
 	border: 1px solid black;
+	background-color: #FFFFFF;
+	color: black;
+	cursor: -webkit-grab;
+	float:left;
+	position:relative;
+}
+.pill:focus{
+	outline: none;
 }
 
-.pbContainer{
-	background-color: #222299;
+.pillHover{
+	background-color: #CCC;
+	cursor: pointer;
+}
+
+.pillClicked{
+	background-color: #33F;
+	color:white;
+}
+
+#scaleContainer{
+	margin: 0px auto;
+	text-align: center;
+	padding-bottom: 20px;
+	width: 55%;
+}
+
+
+.scale{
+	text-align: center;
+	margin:0px;
+	float: left;
+	height: 150px;
+
+}
+
+.scale>h3, .scale>p{
+	width:100%;
+	text-align: center;
+	color: black;
+	padding:0px;
+	margin:2px;
+}
+
+
+#scaleRight, #scaleLeft{
+	width: 49%;
+	background-color: #99AADD;
+	border-radius: 12px;
+	margin: auto;
+}
+
+
+#betweenScaleGroups{
+	width: 1px;
+	margin-left:0.9%;
+	margin-right: 0.9%;
+	border-radius: 5px;
+}
+
+.feedback{
+	height:100px;
+	background-color: #99AADD;
+}
+
+#scaleOneFeedback{
+	float:left;
+	width: 38%;
+	border-radius:12px 0px 0px 12px;
+}
+#scaleTwoFeedback{
+	float:right;
+	width: 38%;
+	border-radius: 0px 12px 12px 0px;
+}
+
+#scaleComparison{
+	float:left;
+	width: 24%;
+}
+
+#answer{
+	border: 3px dashed black;
+	height:135px;
+	width:145px;
+	padding:1px;
+	position: relative;
+	top:-125px;
+	left:250px;
+	border-radius: 12px;
+	float: right;
+	text-align: left;
+	font-size: 25px;
+}
+
+
+
+#ansText{
+	display:inline;
+	text-align: center;
+	float: left;
+	font-size: 20px;
+	width:85px;
+}
+
+#answerPB{
+	float:left;
+	border:none;
+}
+
+#checkAnswer{
+	height: 25px;
+	width:100%;
+	display:inline;
+	clear:both;
+	border-radius: 10px;
+
+}
+.disabled{
+	opacity:0;
+}
+
+.enabled{
+	opacity:1.0;
+}
+
+
+
+.clearBoth{
+	clear:both;
+}
+
+
+#buttonContainer{
+	text-align: center;
+	margin-bottom: 5px;
+	width: 100%;
+}
+
+#buttonContainer>button{
+	height: 50px;
+	width: 200px;
+	font-size: 25px;
+	color: black;
+	border-radius: 10px;
+}
+
+#controlWindow{
+	position: relative;
+	top:-150px;
+	background-color: #7788BB;
+	padding:0px;
+	margin:auto;
+	width:-webkit-max-content;
+	text-align: center;
+	border-radius: 5px;
+}
+
+
+.controlButton{
+	margin:0px;
+	background-color: #99AADD;
+	height: 50px;
+	width: 200px;
+	font-size: 20px;
+	
+	color: #C22;
+	border:none;	
+	border-radius: 10px;
+}
+
+.disableDragClick{
+	background-color: #6677AA;
+	border: 2px dotted #444566;
+	color: white;
+}
+
+.controlButton:focus{
+	outline:none;
+}
+
+/*
+vertCent are divs that go inside pills
+purpose is to vertically align contents of pill
+*/
+.vertCent{
+	height:57%;
+	display:inline-block;
+	border:none;
+}
+
+#pillBox_ANS_1{
+	float:left;
+	height:90px;
+	background-color:#9AD; 
 }
