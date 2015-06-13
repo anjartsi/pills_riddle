@@ -70,10 +70,12 @@ var pillBoxID = function(pbIndex,pbNum){
 // Output: corresponding pillBox object
 var pillBoxObject = function(pbEl){
 	var pBox = pbEl.id;
-	var underscore=pBox.indexOf('_');
-	var pbCont = pBox[underscore+1];
-	var pbNum=pBox.substr(underscore+3);
-	return allPillBoxes[pbCont][pbNum];
+	if(pBox.search('pillBox_')!=-1){
+		var underscore=pBox.indexOf('_');
+		var pbCont = pBox[underscore+1];
+		var pbNum=pBox.substr(underscore+3);
+		return allPillBoxes[pbCont][pbNum];	
+	}
 };
 
 

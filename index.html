@@ -30,9 +30,6 @@
 			<p>Figure out which one is the poisoned pill.</p>
 		</div>
 		<br>
-		<div class='reset' id='reset'>
-			<button class='btn' id='resetButton'>Reset</button>
-		</div>
 
 		<div id='actionWindow'>
 			<div class='space' id='leftSpace'>
@@ -72,16 +69,18 @@
 				<div class='scale feedback' id='scaleComparison'></div>
 				<div class='scale feedback' id='scaleTwoFeedback'></div>
 				<div class='clearBoth'></div>
-				<div class='scale	 feedback disabled' id='answer'>
+				<div class='scale disabled' id='answer'>
 					<div id='ansText'>Place Poisoned Pill Here: &#8680</div>
 					<div id='answerPB'></div>
 					<div id='answerButtons'>
-						<button class='btn disabled' id='checkAnswer'>Check Answer</button>
+						<button class='btn disabled' id='checkAnswerButton'>Check Answer</button>
 					</div>
 				</div>
+				
 				<div class='clearBoth'></div>
 				<br>
 				<div class='controls' id='controlWindow'>
+				<button class='btn' id='resetButton'>Reset</button>
 					<button class='controlButton disableDragClick' id='dragButton'>Dragging Enabled</button>
 					<button class='controlButton disableDragClick' id='clickButton'>Clicking Enabled</button>
 				</div>

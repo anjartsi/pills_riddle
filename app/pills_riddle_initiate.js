@@ -34,7 +34,7 @@ var resetButton = document.getElementById('resetButton');
 var clearScaleButton = document.getElementById('clearScaleButton');
 var clearLeftButton = document.getElementById('clearLeftButton');
 var clearRightButton = document.getElementById('clearRightButton');
-
+var checkAnswerButton = document.getElementById('checkAnswerButton');
 
 var allPills=[];//array of all the Pill objects 
 
@@ -72,6 +72,7 @@ pillBoxCreator(scale1,6);
 pillBoxCreator(scale2,6);
 pillBoxCreator(lSpace,12);
 pillBoxCreator(rSpace,12);
+pillBoxCreator(answerPB,1);
 
 randomizePoison()
 pillCreator();
