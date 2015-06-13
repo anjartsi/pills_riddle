@@ -39,6 +39,11 @@ Pill.prototype.unchoose = function() {
 }
 
 
+//Easy way to access each pill element by its html ID
+var pillID = function(num){
+	return document.getElementById('pill_'+num);
+}
+
 /*************************
  PillBox Class
 *************************/
@@ -56,6 +61,20 @@ PillBox.prototype.create = function(el){
 	el.innerHTML+=this.htmlString;
 }
 
+// Easy way to access each pillBox element by its html ID
+var pillBoxID = function(pbIndex,pbNum){
+	return document.getElementById('pillBox_'+pbIndex+'_'+pbNum);
+}
+
+// Input: HTML ID of a pillBox
+// Output: corresponding pillBox object
+var pillBoxObject = function(pbEl){
+	var pBox = pbEl.id;
+	var underscore=pBox.indexOf('_');
+	var pbCont = pBox[underscore+1];
+	var pbNum=pBox.substr(underscore+3);
+	return allPillBoxes[pbCont][pbNum];
+};
 
 
 

@@ -6,28 +6,6 @@ var pillsOnScale=[[],[]];
 var emptyContBoxes=[];
 var difference;
 
-
-var scaleOne = document.getElementById('scaleOne');
-var scaleTwo = document.getElementById('scaleTwo');
-var scaleOneFeedback = document.getElementById('scaleOneFeedback');
-var scaleTwoFeedback = document.getElementById('scaleTwoFeedback');
-var scaleComparison = document.getElementById('scaleComparison');
-var weighButton = document.getElementById('weighButton');
-var clearScale = document.getElementById('clearScale');
-var clearLeft = document.getElementById('clearLeft');
-var clearRight = document.getElementById('clearRight');
-var answer = document.getElementById('answer');
-var dragButton = document.getElementById('dragButton');
-var clickButton = document.getElementById('clickButton');
-var actionWindow = document.getElementById('actionWindow');
-var pillsContainer = document.getElementById('pillsContainer');
-var scale1 = document.getElementById('scale1');
-var scale2 = document.getElementById('scale2');
-var lSpace = document.getElementById('leftSpace');
-var rSpace = document.getElementById('rightSpace');
-var checkAnswer = document.getElementById('checkAnswer');
-var resetButton = document.getElementById('resetButton');
-
 var weigh = function(cont) {
 	var weight = 0;
 	for (var i=1;i<allPillBoxes[cont].length;i++){
@@ -172,9 +150,9 @@ var resetProblem = function() {
 
 var buttonEventListeners = function() {
 	weighButton.addEventListener('mousedown',useScale);
-	clearScale.addEventListener('mousedown',clearScales);
-	clearLeft.addEventListener('mousedown',clearLeftScale);
-	clearRight.addEventListener('mousedown',clearRightScale);
+	clearScaleButton.addEventListener('mousedown',clearScales);
+	clearLeftButton.addEventListener('mousedown',clearLeftScale);
+	clearRightButton.addEventListener('mousedown',clearRightScale);
 	dragButton.addEventListener('mousedown',toggleDragging);
 	clickButton.addEventListener('mousedown',toggleClicking);
 	resetButton.addEventListener('mousedown',resetProblem);
