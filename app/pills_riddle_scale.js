@@ -2,19 +2,16 @@ var scaleUses=3;
 var difference=0;
 var scaleOne=0;
 var scaleTwo=0;
-var pillsOnScale=[[],[]];
 var emptyContBoxes=[];
 var difference;
 
 // Returns the combined weight of all the pills in a group of pillBoxes
-// Each pill in that group gets added to teh corresponding array of pillsOnScale
 var weigh = function(cont) {
 	var weight = 0;
 	for (var i=1;i<allPillBoxes[cont].length;i++){
 		var pillNum=allPillBoxes[cont][i].pill;
 		if(pillNum>0){
 			weight+= allPills[pillNum].weight;
-			pillsOnScale[cont-1].push(pillNum);
 		}
 	}
 	return weight;
@@ -22,20 +19,22 @@ var weigh = function(cont) {
 
 var calculateDifference = function() {
 	difference = 0;
-	pillsOnScale[0].length=0;
-	pillsOnScale[1].length=0;
-	return difference = weigh(1)-weigh(2);
+	return difference = weigh(1) - weigh(2);
 }
 
 // Print which pills were weighed
 var printRecords = function(){
-	for(var i=0;i<pillsOnScale[0].length;i++){
-		scaleOneFeedback.innerHTML+='Pill#'+pillsOnScale[0][i];
-		if(i+1<pillsOnScale[0].length){scaleOneFeedback.innerHTML+=' , '}
+	for(var i=1;i<allPillBoxes[1].length;i++) {
+		if(allPillBoxes[1][i].pill>0) {
+			scaleOneFeedback.innerHTML+='Pill#'+allPillBoxes[1][i].pill;
+			if(i+1<allPillBoxes[1].length){scaleOneFeedback.innerHTML+=', '}
+		}
 	}
-	for(var i=0;i<pillsOnScale[1].length;i++){
-		scaleTwoFeedback.innerHTML+='Pill#'+pillsOnScale[1][i];
-		if(i+1<pillsOnScale[1].length){scaleTwoFeedback.innerHTML+=', '}
+	for(var i=1;i<allPillBoxes[2].length;i++) {
+		if(allPillBoxes[2][i].pill>0) {
+			scaleTwoFeedback.innerHTML+='Pill#'+allPillBoxes[2][i].pill;
+			if(i+1<allPillBoxes[2].length){scaleTwoFeedback.innerHTML+=', '}
+		}
 	}
 	if(scaleUses>0){
 		scaleOneFeedback.innerHTML+='<hr>';
@@ -88,19 +87,19 @@ var useScale = function() {
 }
 
 var clearLeftScale = function() {
-	weigh(1);
-	for(var i=0;i<pillsOnScale[0].length;i++){
-		movePill(pillsOnScale[0][i],pillBoxID(3,1))
+	for(var i=1;i<allPillBoxes[1].length;i++) {
+		if(allPillBoxes[1][i].pill>0) {
+			movePill(allPillBoxes[1][i].pill,pillBoxID(3,1));	
+		}
 	}
-	pillsOnScale[0].length=0;
 }
 
 var clearRightScale = function() {
-	weigh(2);
-	for(var i=0;i<pillsOnScale[1].length;i++){
-		movePill(pillsOnScale[1][i],pillBoxID(4,1))
+	for(var i=1;i<allPillBoxes[2].length;i++) {
+		if(allPillBoxes[2][i].pill>0) {
+			movePill(allPillBoxes[2][i].pill,pillBoxID(4,1));	
+		}
 	}
-	pillsOnScale[1].length=0;
 }
 
 var clearScales = function() {
